@@ -29,6 +29,9 @@ True
 [<Depedency 'requests' constraint='*'>]
 ```
 
+>>> project.virtualenv_location
+/Volumes/KR/.local/share/virtualenvs/pipenvlib-kjpeBSWf
+
 ------------
 
 This project (which is a work in progress) was built to facilitate the development of a Sublime Text 3 plugin (which in the works).
