@@ -1,8 +1,8 @@
 # PipenvLib: A library for manipulating Pipenv projects.
 
-This library exists to make it easy to programatically interact with / introspect / manipulate [Pipenv](https://docs.pipenv.org) projects.
+This library exists to make it easy to programmatically interact with / introspect / manipulate [Pipenv](https://docs.pipenv.org) projects.
 
-It allows you examine depenencies and requirements of a project, as well as install/uninstall packages from Python directly.
+It allows you examine dependencies and requirements of a project, as well as install/uninstall packages from Python directly.
 
 
 ## Example Usage
