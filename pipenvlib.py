@@ -1,7 +1,9 @@
 import os
+import json
 
 import toml
 import delegator
+
 
 class Dependency(object):
     """A Dependency."""
@@ -16,6 +18,18 @@ class Dependency(object):
             self.name, self.constraint
         )
 
+
+class LockedDependency(object):
+    """A Locked Dependency"""
+    def __init__(self, name, constraint, hashes):
+        self.name = name
+        self.constraint = constraint
+        self.hashes = hashes
+
+    def __repr__(self):
+        return "<LockedDepedency '{0}{1}'>".format(
+            self.name, self.constraint
+        )
 
 class Requirement(object):
     """A Requirement."""
@@ -72,23 +86,49 @@ class PipenvProject(object):
 
     @property
     def packages(self):
+        """Returns a list of Dependency objects (for [packages]) for
+        the Pipenv project.
+        """
         return self._get_section_of_pipfile('packages', Dependency)
 
     @property
     def dev_packages(self):
+        """Returns a list of Dependency objects (for [dev-packages]) for
+        the Pipenv project.
+        """
         return self._get_section_of_pipfile('dev-packages', Dependency)
 
     @property
     def requires(self):
+        """Returns a list of Requirement objects for the Pipenv project.
+        """
         return self._get_section_of_pipfile('requires', Requirement)
 
     @property
     def locked_packages(self):
-        pass
+        """Returns a list of LockedDependency objects for the Pipenv
+        project.
+        """
+        self.assert_has_lockfile()
+
+        def gen():
+            with open(self._lockfile_path) as f:
+                lockfile = json.load(f)
+
+            for package in lockfile['default']:
+                name = package
+                constraint = lockfile['default'][package]['version']
+                hashes = lockfile['default'][package]['hashes']
+
+                yield LockedDependency(name, constraint, hashes)
+
+        return [l for l in gen()]
+
 
     @property
     def locked_dev_packages(self):
-        pass
+        self.assert_has_lockfile()
+
 
     def _assert_pipenv_is_installed(self):
         pass
@@ -116,6 +156,7 @@ class PipenvProject(object):
 
     @property
     def virtualenv_location(self):
+        # return self._
         pass
 
     # @property
