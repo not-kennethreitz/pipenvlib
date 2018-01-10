@@ -3,17 +3,36 @@ import os
 import toml
 import delegator
 
-
 class Dependency(object):
     """A Dependency."""
+
     def __init__(self, name, constraint, locked=False):
         self.name = name
         self.constraint = constraint
         self.locked = locked
 
+    def __repr__(self):
+        return "<Depedency '{0}' constraint='{1}'>".format(
+            self.name, self.constraint
+        )
+
+
+class Requirement(object):
+    """A Requirement."""
+
+    def __init__(self, name, constraint):
+        self.name = name
+        self.constraint = constraint
+
+    def __repr__(self):
+        return "<Requirement '{0}' constraint='{1}'>".format(
+            self.name, self.constraint
+        )
+
 
 class PipenvProject(object):
     """A Pipenv project."""
+
     def __init__(self, home, pipfile='Pipfile'):
         self.home = home
         self.pipfile = pipfile
@@ -41,13 +60,27 @@ class PipenvProject(object):
     def lockfile_is_latest(self):
         pass
 
+    def _get_section_of_pipfile(self, section, target):
+        def gen():
+            pipfile = toml.load(self._pipfile_path)
+            for package in pipfile[section]:
+                name = package
+                constraint = pipfile[section][package]
+                yield target(name, constraint)
+
+        return [p for p in gen()]
+
     @property
     def packages(self):
-        pass
+        return self._get_section_of_pipfile('packages', Dependency)
 
     @property
     def dev_packages(self):
-        pass
+        return self._get_section_of_pipfile('dev-packages', Dependency)
+
+    @property
+    def requires(self):
+        return self._get_section_of_pipfile('requires', Requirement)
 
     @property
     def locked_packages(self):
