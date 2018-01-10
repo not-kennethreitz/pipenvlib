@@ -19,7 +19,7 @@ project = pipenvlib.PipenvProject('.')
 >>> project.packages
 [<Depedency 'toml' constraint='*'>, <Depedency 'delegator.py' constraint='*'>]
 
->>> project.locked_package
+>>> project.locked_packages
 [<LockedDepedency 'delegator.py==0.0.14'>, <LockedDepedency 'pexpect==4.3.1'>, <LockedDepedency 'ptyprocess==0.5.2'>, <LockedDepedency 'toml==0.9.4'>]
 
 >>> project.install('requests', dev=True)
