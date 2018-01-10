@@ -94,14 +94,25 @@ class PipenvProject(object):
         pass
 
     def _run(self, cmd):
-        """Run a Pipenv command."""
-        pass
+        """Run a Pipenv command for the Pipenv project.."""
+        return delegator.run('pipenv {0}'.format(cmd), cwd=self.home)
 
-    def install(package_name):
-        pass
+    def install(self, package_name, constraint=None, dev=False):
+        """Installs a given package to the Pipenv project."""
+        # If no constraint was
 
-    def uninstall(package_name):
-        pass
+        if constraint is not None:
+            # Append the constraint to the package name.
+            package_name = 'package_name{0}'.format(constraint)
+
+        dev = '' if not dev else '--dev'
+
+        return self._run('install {0} {1}'.format(package_name)).return_code == 0
+
+    def uninstall(self, package_name):
+        """Uninstalls a given package from the pipenv project."""
+
+        return self._run('uninstall {0}'.format(package_name)).return_code == 0
 
     @property
     def virtualenv_location(self):

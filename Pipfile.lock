@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f9296f30d25f044a7cb4eb5d10aecda5f64806b41f0126200adece0c27c37335"
+            "sha256": "8cf7c857bd87b9ddc57b56086aa98cb51f8dbb237eeb91a30bafc060d1c5c4a2"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -17,7 +17,9 @@
             "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "3.6"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -29,10 +31,10 @@
     "default": {
         "delegator.py": {
             "hashes": [
-                "sha256:2575c4adc923ad0b8fdaa433f862b2b7cf21982717fb23cc895fd8f249ea820c",
-                "sha256:495e11ada66648650171a6c9a188df4eb050b235abff8771f41ee8a064eb9ded"
+                "sha256:b2552a818ec078f017688adb2044a86514d014d5854e5ac641ad614c357fa60b",
+                "sha256:27eb1585935ee5dd297a133bf0d91edb4fe84cc5615750fbfbcd6222cc66cc2b"
             ],
-            "version": "==0.0.13"
+            "version": "==0.0.14"
         },
         "pexpect": {
             "hashes": [
