@@ -2,7 +2,7 @@
 
 This library exists to make it easy to programatically interact with / introspect / manipulate Pipenv projects.
 
-**It allows you examine depenencies and requirements of a project, as well as install/uninstall packages from Python directly.**
+It allows you examine depenencies and requirements of a project, as well as install/uninstall packages from Python directly.
 
 
 ## Example Usage
