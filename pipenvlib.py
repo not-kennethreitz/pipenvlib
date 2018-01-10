@@ -195,16 +195,7 @@ class PipenvProject(object):
 
     @property
     def virtualenv_location(self):
-        # return self._
-        pass
-
-    # @property
-    # def site_packages_location(self):
-    #     pass
-
-    # @property
-    # def python_home_location(self):
-    #     pass
+        return self._run('--venv').out.strip()
 
 
 
