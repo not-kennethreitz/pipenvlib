@@ -60,7 +60,7 @@ class PipenvProject(object):
             # Cheat a project-creation by installing, then uninstalling
             # the Requests library. :)
             self.install('requests')
-            self.uninstlal('requests')
+            self.uninstall('requests')
 
     @property
     def _pipfile_path(self):
