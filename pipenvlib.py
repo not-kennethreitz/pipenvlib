@@ -180,7 +180,7 @@ class PipenvProject(object):
 
         dev = '' if not dev else '--dev'
 
-        return self._run('install {0} {1}'.format(package_name)).return_code == 0
+        return self._run('install {0} {1}'.format(package_name, dev)).return_code == 0
 
     def uninstall(self, package_name):
         """Uninstalls a given package from the pipenv project."""
