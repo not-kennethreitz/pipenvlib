@@ -47,12 +47,18 @@ class Requirement(object):
 class PipenvProject(object):
     """A Pipenv project."""
 
-    def __init__(self, home, pipfile='Pipfile'):
+    def __init__(self, home, pipfile='Pipfile', create=False):
         self.home = home
         self.pipfile = pipfile
 
-        # Assert that the Pipfile exists.
-        self.assert_has_pipfile()
+        if not create:
+            # Assert that the Pipfile exists.
+            self.assert_has_pipfile()
+        else:
+            # Cheat a project-creation by installing, then uninstalling
+            # the Requests library. :)
+            self.install('requests')
+            self.uninstlal('requests')
 
     @property
     def _pipfile_path(self):
