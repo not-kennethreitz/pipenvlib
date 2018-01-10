@@ -14,7 +14,7 @@ class Dependency(object):
         self.locked = locked
 
     def __repr__(self):
-        return "<Depedency '{0}' constraint='{1}'>".format(
+        return "<Dependency '{0}' constraint='{1}'>".format(
             self.name, self.constraint
         )
 
@@ -28,7 +28,7 @@ class LockedDependency(object):
         self.hashes = hashes
 
     def __repr__(self):
-        return "<LockedDepedency '{0}{1}'>".format(
+        return "<LockedDependency '{0}{1}'>".format(
             self.name, self.constraint
         )
 

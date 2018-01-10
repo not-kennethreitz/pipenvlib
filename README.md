@@ -17,16 +17,16 @@ project = pipenvlib.PipenvProject('.')
 
 ```pycon
 >>> project.packages
-[<Depedency 'toml' constraint='*'>, <Depedency 'delegator.py' constraint='*'>]
+[<Dependency 'toml' constraint='*'>, <Dependency 'delegator.py' constraint='*'>]
 
 >>> project.locked_packages
-[<LockedDepedency 'delegator.py==0.0.14'>, <LockedDepedency 'pexpect==4.3.1'>, <LockedDepedency 'ptyprocess==0.5.2'>, <LockedDepedency 'toml==0.9.4'>]
+[<LockedDependency 'delegator.py==0.0.14'>, <LockedDependency 'pexpect==4.3.1'>, <LockedDependency 'ptyprocess==0.5.2'>, <LockedDependency 'toml==0.9.4'>]
 
 >>> project.install('requests', dev=True)
 True
 
 >>> project.dev_packages
-[<Depedency 'requests' constraint='*'>]
+[<Dependency 'requests' constraint='*'>]
 ```
 
 >>> project.virtualenv_location
