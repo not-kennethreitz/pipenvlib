@@ -124,11 +124,44 @@ class PipenvProject(object):
 
         return [l for l in gen()]
 
-
     @property
     def locked_dev_packages(self):
+        """Returns a list of LockedDependency objects for the Pipenv
+        project.
+        """
         self.assert_has_lockfile()
 
+        def gen():
+            with open(self._lockfile_path) as f:
+                lockfile = json.load(f)
+
+            for package in lockfile['develop']:
+                name = package
+                constraint = lockfile['develop'][package]['version']
+                hashes = lockfile['develop'][package]['hashes']
+
+                yield LockedDependency(name, constraint, hashes)
+
+        return [l for l in gen()]
+
+    @property
+    def locked_requirements(self):
+        """Returns a list of Requirement objects for the Pipenv
+        project, from the Pipfile.lock.
+        """
+        self.assert_has_lockfile()
+
+        def gen():
+            with open(self._lockfile_path) as f:
+                lockfile = json.load(f)
+
+            for require in lockfile['_meta']['requires']:
+                name = require
+                constraint = lockfile['_meta']['requires'][require]
+
+                yield Requirement(name, constraint)
+
+        return [l for l in gen()]
 
     def _assert_pipenv_is_installed(self):
         pass
