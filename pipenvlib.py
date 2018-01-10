@@ -21,6 +21,7 @@ class Dependency(object):
 
 class LockedDependency(object):
     """A Locked Dependency"""
+
     def __init__(self, name, constraint, hashes):
         self.name = name
         self.constraint = constraint
@@ -30,6 +31,7 @@ class LockedDependency(object):
         return "<LockedDepedency '{0}{1}'>".format(
             self.name, self.constraint
         )
+
 
 class Requirement(object):
     """A Requirement."""
@@ -75,10 +77,6 @@ class PipenvProject(object):
     def assert_has_lockfile(self):
         """Asserts that the Pipfile.lock exists."""
         assert os.path.isfile(self._pipfile_path)
-
-    @property
-    def lockfile_is_latest(self):
-        pass
 
     def _get_section_of_pipfile(self, section, target):
         def gen():
@@ -196,7 +194,3 @@ class PipenvProject(object):
     @property
     def virtualenv_location(self):
         return self._run('--venv').out.strip()
-
-
-
-
