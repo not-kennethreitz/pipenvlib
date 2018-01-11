@@ -76,7 +76,7 @@ class PipenvProject(object):
 
     def assert_has_lockfile(self):
         """Asserts that the Pipfile.lock exists."""
-        assert os.path.isfile(self._pipfile_path)
+        assert os.path.isfile(self._lockfile_path)
 
     def _get_section_of_pipfile(self, section, target):
         def gen():
