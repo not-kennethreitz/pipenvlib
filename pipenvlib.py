@@ -20,7 +20,7 @@ class Dependency(object):
 
 
 class LockedDependency(object):
-    """A Locked Dependency"""
+    """A Locked Dependency."""
 
     def __init__(self, name, constraint, hashes):
         self.name = name
@@ -168,7 +168,7 @@ class PipenvProject(object):
         return [l for l in gen()]
 
     def _run(self, cmd):
-        """Run a Pipenv command for the Pipenv project.."""
+        """Run a Pipenv command for the Pipenv project."""
         return delegator.run('pipenv {0}'.format(cmd), cwd=self.home)
 
     def install(self, package_name, constraint=None, dev=False):
