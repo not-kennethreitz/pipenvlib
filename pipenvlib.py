@@ -91,8 +91,7 @@ class PipenvProject(object):
     @property
     def packages(self):
         """Returns a list of Dependency objects (for [packages]) for
-        the Pipenv project.
-        """
+        the Pipenv project"""
         return self._get_section_of_pipfile('packages', Dependency)
 
     @property
