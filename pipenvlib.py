@@ -188,6 +188,10 @@ class PipenvProject(object):
 
         return self._run('uninstall {0}'.format(package_name)).return_code == 0
 
+    def check(self):
+        """Runs Pipenv check on the Pipenv project."""
+        return self._run('check').return_code == 0
+
     @property
     def virtualenv_location(self):
         return self._run('--venv').out.strip()
