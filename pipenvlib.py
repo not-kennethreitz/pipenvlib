@@ -184,7 +184,7 @@ class PipenvProject(object):
         return self._run('install {0} {1}'.format(package_name, dev)).return_code == 0
 
     def uninstall(self, package_name):
-        """Uninstalls a given package from the pipenv project."""
+        """Uninstalls a given package from the Pipenv project."""
 
         return self._run('uninstall {0}'.format(package_name)).return_code == 0
 
